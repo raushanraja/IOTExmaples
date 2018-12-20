@@ -33,7 +33,7 @@ interfaces= ps.net_if_addrs()
 reqInteface='wlan0'                          # change this to get required interafce's IP ex. reqInteface='lo', reqInteface='eth0'
 
 if reqInteface in interfaces:
-    ip='IP:\n'+interfaces[reqInteface][0].address
+    ip='\n'+interfaces[reqInteface][0].address
 else:
     ip=' xx  Wifi  xx\n    Disconnected'    #change this to print required message if interface not connected
 
