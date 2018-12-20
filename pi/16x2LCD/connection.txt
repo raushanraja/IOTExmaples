@@ -1,0 +1,39 @@
+In the steps below the physical/logical numbering of the pins are in the brackets otherwise it’s the GPIO numbering.
+
+1. Place a wire from 5v (Pin 2) to the positive rail on the breadboard.
+
+2. Place a wire from ground (pin 6) to the ground rail on the breadboard.
+
+3. Place the 16×2 display onto the breadboard.
+
+4. Place the potentiometer onto the breadboard.
+
+■ Connect the positive and ground pins to the relevant rails on the breadboard.
+
+
+
+Starting from pin 1 of the LCD display do the following or simply refer to the circuit diagram below. Pin 1 of the screen is the pin closest to two edges of the board.
+
+1. Pin 1 (Ground) goes to the ground rail.
+
+2. Pin 2 (VCC/5v) goes to the positive rail.
+
+3. Pin 3 (V0) goes to the middle wire of the potentiometer.
+
+4. Pin 4 (RS) goes to GPIO25 (Pin 22)
+
+5. Pin 5 (RW) goes to the ground rail.
+
+6. Pin 6 (EN) goes to GPIO24 (Pin 18)
+
+7. Pin 11 (D4) goes to GPIO23 (Pin 16)
+
+8. Pin 12 (D5) goes to GPIO17 (Pin 11)
+
+9. Pin 13 (D6) goes to GPIO18 (Pin 12)
+
+10. Pin 14 (D7) goes to GPIO22 (Pin 15)
+
+11. Pin 15 (LED +) goes to the positive rail.
+
+12. Pin 16 (LED -) goes to the ground rail.
