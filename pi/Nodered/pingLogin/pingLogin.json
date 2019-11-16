@@ -1,0 +1,360 @@
+[
+    {
+        "id": "598a91.6b51357",
+        "type": "exec",
+        "z": "14d496a0.b5ee51",
+        "command": "ping -c1 google.com | grep 'received' | awk -F',' '{ print $2}' | awk '{ print $1}'",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "google.com",
+        "x": 550,
+        "y": 760,
+        "wires": [
+            [
+                "ccef140b.4ad4a"
+            ],
+            [
+                "6d95ff0.a8385"
+            ],
+            []
+        ],
+        "outputLabels": [
+            "result",
+            "",
+            ""
+        ]
+    },
+    {
+        "id": "6d95ff0.a8385",
+        "type": "debug",
+        "z": "14d496a0.b5ee51",
+        "name": "Error",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1310,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "bc16c878.2f74c8",
+        "type": "debug",
+        "z": "14d496a0.b5ee51",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1310,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "ccef140b.4ad4a",
+        "type": "switch",
+        "z": "14d496a0.b5ee51",
+        "name": "Ping Done",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 590,
+        "y": 700,
+        "wires": [
+            [
+                "959a55cc.8c2dd"
+            ],
+            [
+                "51937535.22115c",
+                "1a47c8a.def44b7"
+            ]
+        ]
+    },
+    {
+        "id": "56efd205.916f94",
+        "type": "trigger",
+        "z": "14d496a0.b5ee51",
+        "op1": "",
+        "op2": "0",
+        "op1type": "date",
+        "op2type": "str",
+        "duration": "-2",
+        "extend": false,
+        "units": "s",
+        "reset": "1",
+        "bytopic": "all",
+        "name": "",
+        "x": 360,
+        "y": 760,
+        "wires": [
+            [
+                "598a91.6b51357"
+            ]
+        ]
+    },
+    {
+        "id": "9446d98b.e50ca",
+        "type": "inject",
+        "z": "14d496a0.b5ee51",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 760,
+        "wires": [
+            [
+                "56efd205.916f94"
+            ]
+        ]
+    },
+    {
+        "id": "51937535.22115c",
+        "type": "debug",
+        "z": "14d496a0.b5ee51",
+        "name": "Ping Fail",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "$number($substring(payload, 0, 1))",
+        "targetType": "jsonata",
+        "x": 760,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "959a55cc.8c2dd",
+        "type": "function",
+        "z": "14d496a0.b5ee51",
+        "name": "Ping Success",
+        "func": "msg.payload=1;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 780,
+        "y": 560,
+        "wires": [
+            [
+                "bc16c878.2f74c8",
+                "56efd205.916f94",
+                "de69be7e.6cf75"
+            ]
+        ]
+    },
+    {
+        "id": "de69be7e.6cf75",
+        "type": "exec",
+        "z": "14d496a0.b5ee51",
+        "command": "hostname -I",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Get IP",
+        "x": 970,
+        "y": 520,
+        "wires": [
+            [
+                "f32ba5dd.e58f68"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "207d7549.66999a",
+        "type": "debug",
+        "z": "14d496a0.b5ee51",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1330,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "1a47c8a.def44b7",
+        "type": "exec",
+        "z": "14d496a0.b5ee51",
+        "command": "ping -c1 172.16.30.200 | grep 'received' | awk -F',' '{ print $2}' | awk '{ print $1}'",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "ping 172.16.30.200",
+        "x": 790,
+        "y": 660,
+        "wires": [
+            [
+                "457ffd89.1a7b1c"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "457ffd89.1a7b1c",
+        "type": "switch",
+        "z": "14d496a0.b5ee51",
+        "name": "Ping Done",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 990,
+        "y": 660,
+        "wires": [
+            [
+                "c72b2611.eda0c"
+            ],
+            [
+                "8596e889.415af8"
+            ]
+        ]
+    },
+    {
+        "id": "8596e889.415af8",
+        "type": "debug",
+        "z": "14d496a0.b5ee51",
+        "name": "Ping Fail",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "$number($substring(payload, 0, 1))",
+        "targetType": "jsonata",
+        "x": 1160,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "8562ae13.c5a9f8",
+        "type": "debug",
+        "z": "14d496a0.b5ee51",
+        "name": "Login Done",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "$string(\"Login Done\")",
+        "targetType": "jsonata",
+        "x": 1330,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "c72b2611.eda0c",
+        "type": "exec",
+        "z": "14d496a0.b5ee51",
+        "command": "echo \"mode=191&username=160105005&password=r14051997&a=$(date \"+%s\")&producttype=0\" > a.txt && curl  -d \"@a.txt\" -X POST http://172.16.30.200:8090/login.xml",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Login",
+        "x": 1150,
+        "y": 640,
+        "wires": [
+            [
+                "8562ae13.c5a9f8",
+                "3ae10fa4.c6059"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "3ae10fa4.c6059",
+        "type": "function",
+        "z": "14d496a0.b5ee51",
+        "name": "Login Success",
+        "func": "msg.payload=1;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1340,
+        "y": 720,
+        "wires": [
+            [
+                "56efd205.916f94"
+            ]
+        ]
+    },
+    {
+        "id": "7eb72351.d295c4",
+        "type": "pushover",
+        "z": "14d496a0.b5ee51",
+        "name": "",
+        "device": "",
+        "title": "",
+        "priority": 0,
+        "sound": "cosmic",
+        "url": "",
+        "url_title": "",
+        "html": false,
+        "x": 1460,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "f32ba5dd.e58f68",
+        "type": "function",
+        "z": "14d496a0.b5ee51",
+        "name": "",
+        "func": "msg.payload=msg.payload.split(\" \")[0];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1130,
+        "y": 520,
+        "wires": [
+            [
+                "207d7549.66999a",
+                "7eb72351.d295c4"
+            ]
+        ]
+    }
+]
