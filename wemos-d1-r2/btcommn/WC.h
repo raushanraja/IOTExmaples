@@ -4,7 +4,7 @@
 class WC{
     public:
         WC(int pin1, int pin2);
-        void connect();
+        void connect(char* ssid, char* passwd, int port=80);
         void disconnect();
         void isConnected();
         void sendData();

@@ -4,7 +4,7 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/home/raushan/Applications/arduino-1.8.11/**",
+                "/home/raushan/Applications/arduino-1.8.10/**",
                 "/home/raushan/.arduino15/**"
             ],
             "defines": [],
