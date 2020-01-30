@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "/home/raushan/Applications/arduino-1.8.11/**",
+                "/home/raushan/.arduino15/**",
+                "/home/raushan/Arduino/libraries/**",
+                "/home/raushan/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/**",
+                "/home/raushan/.arduino15/packages/esp8266/tools/**"
+            ],
+            "forcedInclude": [],
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}
