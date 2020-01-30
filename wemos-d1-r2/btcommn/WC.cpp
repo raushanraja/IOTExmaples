@@ -9,7 +9,7 @@ WC::WC(int pin1, int pin2){
     _pin2=_pin2;
 }
 
-void WC::connect(char* ssid, char* passwd, int port=80){
+void WC::connect(char* ssid, char* passwd, int port){
    WiFiServer server(port);
    WiFi.mode(WIFI_STA);
    WiFi.begin(ssid,passwd);
