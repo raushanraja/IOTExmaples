@@ -1,7 +1,7 @@
 #define ARDUINOJSON_USE_LONG_LONG 1
 #define LARGE_JSON_BUFFERS 1
 #define DHTPIN D6
-#define RELAYPIN D9
+#define RELAYPIN D7
 #define DHTTYPE DHT11
 
 #include <Arduino.h>
@@ -12,6 +12,8 @@
 
 const char *ssid = "wifi";
 const char *password = "password";
+bool ledCurrentState = false;
+
 
 WebThingAdapter *adapter;
 DHT dht(DHTPIN, DHTTYPE);
@@ -27,9 +29,6 @@ ThingDevice indoorWeahter("dht11", "Temperature & Humidity", dhtTypes);
 ThingProperty dhtTemp("tempC", "", NUMBER, nullptr);
 ThingProperty dhtHumid("humidity", "", NUMBER, nullptr);
 
-uint32_t delayMS;
-bool red = false;
-int redLed = D7;
 
 void readDHT11()
 {
@@ -60,7 +59,6 @@ Scheduler runner;
 void setup(void)
 {
   pinMode(D7, OUTPUT);
-  delayMS = 2000;
   Serial.begin(9600);
 
   // Initiating Runner & add task to it
@@ -113,6 +111,6 @@ void loop()
   runner.execute();
   adapter->update();
   bool one = on.getValue().boolean;
-  digitalWrite(redLed, one ? LOW : HIGH);
-  red = one;
+  digitalWrite(REPLAYPIN, one ? LOW : HIGH);
+  ledCurrentState = one;
 }
