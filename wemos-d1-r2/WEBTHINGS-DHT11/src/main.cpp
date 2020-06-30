@@ -6,6 +6,7 @@
 
 #include <Arduino.h>
 #include <DHT.h>
+#include <TaskScheduler.h>
 #include "Thing.h"
 #include "WebThingAdapter.h"
 
@@ -16,20 +17,22 @@ WebThingAdapter *adapter;
 DHT dht(DHTPIN, DHTTYPE);
 
 const char *dhtTypes[] = {nullptr};
+const char *deviceTypes[] = {"OnOffSwitch", nullptr};
+
+ThingDevice device("switc", "Led One", deviceTypes);
+ThingProperty on("on", "On/Off", BOOLEAN, "OnOffProperty");
 
 ThingDevice indoorWeahter("dht11", "Temperature & Humidity", dhtTypes);
-
 
 ThingProperty dhtTemp("tempC", "", NUMBER, nullptr);
 ThingProperty dhtHumid("humidity", "", NUMBER, nullptr);
 
-
 uint32_t delayMS;
-
+bool red = false;
+int redLed = D7;
 
 void readDHT11()
 {
-  delay(delayMS);
   Serial.print("DHT Data Reading.....\n");
   float h = dht.readHumidity();
   float t = dht.readTemperature();
@@ -50,10 +53,20 @@ void readDHT11()
   dhtHumid.setValue(value);
 }
 
+// Task Scheduling
+Task t1(5000, TASK_FOREVER, &readDHT11);
+Scheduler runner;
+
 void setup(void)
 {
+  pinMode(D7, OUTPUT);
   delayMS = 2000;
   Serial.begin(9600);
+
+  // Initiating Runner & add task to it
+  runner.init();
+  runner.addTask(t1);
+
   Serial.println("");
   Serial.print("Connecting to \"");
   Serial.print(ssid);
@@ -78,9 +91,13 @@ void setup(void)
   indoorWeahter.addProperty(&dhtTemp);
   indoorWeahter.addProperty(&dhtHumid);
   adapter->addDevice(&indoorWeahter);
+
+  device.addProperty(&on);
+  adapter->addDevice(&device);
+
   adapter->begin();
 
-  readDHT11();
+  t1.enable();
   Serial.println("");
   Serial.print("Connected to ");
   Serial.println(ssid);
@@ -91,9 +108,11 @@ void setup(void)
   Serial.print("/things/");
 }
 
-
 void loop()
 {
+  runner.execute();
   adapter->update();
-  readDHT11();
+  bool one = on.getValue().boolean;
+  digitalWrite(redLed, one ? LOW : HIGH);
+  red = one;
 }
