@@ -5,8 +5,8 @@
 #include "Thing.h"
 #include "WebThingAdapter.h"
 
-const char *ssid = "wifi";
-const char *password = "pasword";
+const char *ssid = "dlink_DWR-920V_7EE5";
+const char *password = "nhaza95645";
 
 WebThingAdapter *adapter;
 

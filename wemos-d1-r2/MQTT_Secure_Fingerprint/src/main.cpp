@@ -2,13 +2,13 @@
 #include <WiFiClientSecure.h>
 #include <PubSubClient.h>
 
-const char *ssid = "YOUR_WIFI_SSID";
-const char *password = "WIFI_PASSWORD";
-const char *mqtt_server = "MQTT_SERVER";
-const int port = 80;               // REPLCAE WITH YOUR PORT
+const char *ssid = "Android_84";
+const char *password = "1234467890";
+const char *mqtt_server = "raushanraja.site";
+const int port = 8883;             // REPLCAE WITH YOUR PORT
 const char *device_id = "esp8266"; // CAN REPLACE
-const char *matt_client_username = "MQTT_USERNAME";
-const char *matt_client_password = "MQTT_PASSWORD";
+const char *matt_client_username = "raushanread";
+const char *matt_client_password = "raushan";
 
 // SHA fingerprint of certificate
 // Change If required as per certificate
@@ -73,6 +73,18 @@ void callback(char *topic, byte *payload, unsigned int length)
     digitalWrite(LED_BUILTIN, HIGH); // Turn the LED off by making the voltage HIGH
     client.publish("test/reply", "LED OFF");
   }
+  else
+  {
+    value = digitalRead(LED_BUILTIN);
+    if (value == HIGH)
+    {
+      client.publish("test/reply", "LED OFF");
+    }
+    else
+    {
+      client.publish("test/reply", "LED ON");
+    }
+  }
 }
 
 void reconnect()
@@ -95,7 +107,7 @@ void reconnect()
     String clientId = "ESP8266Client-";
     clientId += String(random(0xffff), HEX);
     // Attempt to connect
-    if (client.connect(clientId.c_str(), matt_client_username, matt_client_password)) 
+    if (client.connect(clientId.c_str(), matt_client_username, matt_client_password))
     {
       Serial.println("connected");
       // Once connected, publish an announcement...
@@ -132,6 +144,7 @@ void setup()
   }
   client.setServer(mqtt_server, port);
   client.setCallback(callback);
+  client.publish("test/reply", "LED OFF");
   digitalWrite(LED_BUILTIN, 1);
 }
 
