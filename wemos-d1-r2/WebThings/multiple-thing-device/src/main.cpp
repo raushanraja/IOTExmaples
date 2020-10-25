@@ -19,9 +19,14 @@ DHT dht(DHTPIN, DHTTYPE);
 const char *dhtTypes[] = {nullptr};
 const char *deviceTypes[] = {"OnOffSwitch", nullptr};
 
+
+// Defining device to control LED and then adding it's property 
 ThingDevice device("switc", "Led One", deviceTypes);
 ThingProperty on("on", "On/Off", BOOLEAN, "OnOffProperty");
 
+// Defining device to monitor Temperature and Humidity
+// Two different properties are defined, one for reading the temperature
+// And second for reading humidity
 ThingDevice indoorWeahter("dht11", "Temperature & Humidity", dhtTypes);
 
 ThingProperty dhtTemp("tempC", "", NUMBER, nullptr);
