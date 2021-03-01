@@ -4,6 +4,7 @@ const asyncExec = util.promisify(require("child_process").exec);
 const { exec } = require("child_process");
 
 let currentSelectedSink;
+let discordCurrentStatus;
 
 socket.on("connection", (client) => {
   console.log("Connected", " client id:", client.id);
@@ -48,11 +49,43 @@ function openPavucontrol() {
   });
 }
 
+function handleDiscord() {
+  let x = exec("pidof Discord",(err,out,code)=>{
+    if(out){
+      exec(`i3-msg -t get_tree | egrep -o ${`"(class\\":\\".[^\\"]+\\")"`}`,(err,out,code)=>{
+        if(out){
+          app_list = out.trim().split('\n').map(app=>app.split(":")[1].replace(/\"/g, ""))
+          if(app_list.includes('discord')){
+            exec(`i3-msg '[class=\"discord\"] kill'`)
+          }else{
+            exec('discord')
+          }
+        }
+      })
+    }
+    else if(err){
+      exec('discord')
+    }
+    else{
+      console.log(code);
+    }
+  })
+}
+
 function handleMessage(message, client) {
-  console.log(`${message.pavu}\r`);
-  if (message.pavu == 1) {
+  console.log(message);
+  if (message.a == 1) {
+  console.log('audio');
     try {
       cycleAudioOutput().catch(error=> console.log(error));
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  if (message.d == 1) {
+    console.log('discord');
+    try {
+      handleDiscord();
     } catch (e) {
       console.log(e);
     }
