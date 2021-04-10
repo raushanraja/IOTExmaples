@@ -1,11 +1,7 @@
 var express = require("express");
 var router = express.Router();
-var { ObjectID } = require("mongodb");
 var _ = require("lodash");
-const app = require("../app");
 const {fetchData,addDataToLocal} = require("../utils/utils");
-const { request } = require("../app");
-const { report } = require("./users");
 
 
 router.get("/", async function (req, res, next) {
