@@ -8,10 +8,10 @@ var app = require('../app');
 var debug = require('debug')('internet-off-frontend:server');
 var http = require('http');
 const dot = require("dotenv").config()
-
 //DB 
 const { MongoClient } = require("mongodb");
 const uri = process.env.DB_URI;
+const uri1 = process.env.LOCAL_DB_URI;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 

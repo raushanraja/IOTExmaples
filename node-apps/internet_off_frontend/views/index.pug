@@ -1,16 +1,18 @@
 extends layout
 
 block content
-  h1= title
+  div
+    h1= title
+    button#refresh Refresh
   table(style='width:100%', border='1')
     thead 
       tr
         th Start 
         th End 
-        th Total Time (in second)
-      tbody 
-          each val, key in offTime
-            tr
-              td=val['startTime']
-              td=val['endTime']
-              td=val['duration']
+        th Total Time (in Minute)
+    tbody 
+      each val, key in offTime
+        tr
+          td=val['startTime']
+          td=val['endTime']
+          td=val['duration']

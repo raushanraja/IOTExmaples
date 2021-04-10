@@ -5,6 +5,7 @@ var _ = require("lodash");
 const app = require("../app");
 const {fetchData,addDataToLocal} = require("../utils/utils");
 const { request } = require("../app");
+const { report } = require("./users");
 
 
 router.get("/", async function (req, res, next) {
@@ -29,17 +30,10 @@ router.get("/", async function (req, res, next) {
 
 router.get("/more",async function(req,res,next){
   let isMore = false;
-  isMore = await req.app.locals.cursor.hasNext();
-  const offTime = await cursor.next();
-  console.log(offTime);
-
-  // await new Promise((res,rej)=>{
-
-  //   if (isMore){
-  //     console.log(offTime);
-  //   }
-  // });
-
+  req.app.locals.dataSet={};
+  const db = req.app.locals.mongoClient;
+  const offTime = await fetchData(db,20);
+  const addToLocal = await addDataToLocal(offTime,req.app.locals.dataSet);
   return res.json({isMore:isMore})
 })
 
