@@ -2,7 +2,9 @@ doctype html
 html
   head
     title= title
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel='stylesheet', href='/stylesheets/style.css')
-  body
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.1.1/tailwind.css')
+  body(class='rounded-t-xl bg-gradient-to-r from-light-blue-50 to-light-blue-100 py-10 w-full mx-auto')
     block content
-    script(src="/javascripts/refresh.js") 
+    script(src="/javascripts/refresh.js")

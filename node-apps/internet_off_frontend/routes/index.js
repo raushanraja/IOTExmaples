@@ -12,7 +12,7 @@ router.get("/", async function (req, res, next) {
     const addToLocal = await addDataToLocal(offTime,req.app.locals.dataSet);
     req.app.locals.cursor = offTime;
     res.render("index", {
-      title: "BSNL Down Time",
+      title: "Personal BSNL Down Time",
       offTime: req.app.locals.dataSet,
     });
   } else {

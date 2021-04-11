@@ -1,18 +1,20 @@
 extends layout
 
 block content
-  div
-    h1= title
-    button#refresh Refresh
-  table(style='width:100%', border='1')
-    thead 
-      tr
-        th Start 
-        th End 
-        th Total Time (in Minute)
-    tbody 
-      each val, key in offTime
-        tr
-          td=val['startTime']
-          td=val['endTime']
-          td=val['duration']
+  div(class="flex justify-center")
+    div
+      div(class='flex justify-between rounded-t-xl to-light-teal-100 py-2')
+        h1.text-xl.flex.items-center.justify-center.font-bold.mx-2.text-light-blue-600= title
+        button(class='p-2 text-white text-sm font-extrabold rounded-md flex items-center justify-center bg-emerald-500 m-2')#refresh Refresh
+      table.table-auto
+        thead 
+          tr
+            th(class='px-4 py-2 text-light-blue-600') Start 
+            th(class='px-4 py-2 text-light-blue-600') End 
+            th(class='px-4 py-2 text-light-blue-600') TimeOut (in Minute)
+        tbody 
+          each val, key in offTime
+            tr
+              td(class='border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium')=val['startTime']
+              td(class='border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium')=val['endTime']
+              td(class='border border-light-blue-500 px-4 py-2 text-light-blue-600 font-medium')=val['duration']

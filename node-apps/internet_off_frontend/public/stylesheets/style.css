@@ -1,8 +1,38 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.to-light-blue-100 {
+  --tw-gradient-to: #6cc3fd1f;
 }
 
-a {
-  color: #00B7FF;
+.to-light-teal-100 {
+  background-color: #aeaeae0f;
+}
+.from-light-blue-50 {
+  --tw-gradient-from: #f0f9ff;
+  --tw-gradient-stops: var(--tw-gradient-from),
+    var(--tw-gradient-to, rgba(240, 249, 255, 0));
+}
+
+.bg-gradient-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+.to-transparent {
+  --tw-gradient-to: transparent;
+}
+
+
+
+.text-light-blue-600 {
+  --tw-text-opacity: 1;
+  color: rgba(2, 132, 199, var(--tw-text-opacity));
+}
+
+.border-light-blue-500 {
+  --tw-border-opacity: 1;
+  border-color: rgba(14, 165, 233, var(--tw-border-opacity));
+}
+
+
+.bg-emerald-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(16,185,129,var(--tw-bg-opacity));
 }

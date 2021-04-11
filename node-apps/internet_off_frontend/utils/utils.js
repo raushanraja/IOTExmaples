@@ -1,4 +1,4 @@
-const options = { weekday: 'long', day: 'numeric' ,month: 'long',year: 'numeric',hour:'numeric',minute:'numeric',second:'numeric'  };
+const options = {day: 'numeric' ,month: 'long',year: 'numeric',hour:'numeric',minute:'numeric',second:'numeric'  };
 async function fetchData(db,limit){
     const offTime = await db
     .db("InternetOff")
