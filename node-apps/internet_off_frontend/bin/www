@@ -3,24 +3,26 @@
 /**
  * Module dependencies.
  */
-
-var app = require('../app');
-var debug = require('debug')('internet-off-frontend:server');
-var http = require('http');
-const dot = require("dotenv").config()
-//DB 
+console.log = function () {};
+var app = require("../app");
+var debug = require("debug")("internet-off-frontend:server");
+var http = require("http");
+const dot = require("dotenv").config();
+//DB
 const { MongoClient } = require("mongodb");
 const uri = process.env.DB_URI;
 const uri1 = process.env.LOCAL_DB_URI;
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
+const client = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '9052');
-app.set('port', port);
+var port = normalizePort(process.env.PORT || "9052");
+app.set("port", port);
 
 /**
  * Create HTTP server.
@@ -31,15 +33,20 @@ var server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
-async function startServer(){
+async function startServer() {
+  const request = require("request");
   await client.connect();
   app.locals.mongoClient = client;
-  app.locals.dataSet = {}
+  app.locals.dataSet = {};
   server.listen(port);
 
+  const fetchMore = setInterval(() => {
+    request(
+      "http://localhost:9052/more");
+  }, 10000);
 }
-server.on('error', onError);
-server.on('listening', onListening);
+server.on("error", onError);
+server.on("listening", onListening);
 
 /**
  * Normalize a port into a number, string, or false.
@@ -66,22 +73,20 @@ function normalizePort(val) {
  */
 
 function onError(error) {
-  if (error.syscall !== 'listen') {
+  if (error.syscall !== "listen") {
     throw error;
   }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  var bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+    case "EACCES":
+      console.error(bind + " requires elevated privileges");
       process.exit(1);
       break;
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+    case "EADDRINUSE":
+      console.error(bind + " is already in use");
       process.exit(1);
       break;
     default:
@@ -95,10 +100,8 @@ function onError(error) {
 
 function onListening() {
   var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
+  debug("Listening on " + bind);
 }
 
-startServer().catch("Error Starting the Server")
+startServer().catch("Error Starting the Server");

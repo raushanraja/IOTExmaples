@@ -7,6 +7,5 @@ button.addEventListener("click", async () => {
 });
 
 const fetInterval = setInterval(async function () {
-  await fetch("/more");
   location.reload();
 }, 10000);

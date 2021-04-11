@@ -11,6 +11,19 @@
     var(--tw-gradient-to, rgba(240, 249, 255, 0));
 }
 
+.to-light-blue-500 {
+  --tw-gradient-to: #0ea5e9;
+}
+.from-cyan-400 {
+  --tw-gradient-from: #22d3ee;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(34, 211, 238, 0));
+}
+.bg-gradient-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+
+
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
