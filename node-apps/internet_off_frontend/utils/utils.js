@@ -21,12 +21,21 @@ function addDataToLocal(offTime,dataSet) {
           if (err) throw err;
           result.map(({ _id, startTime, endTime, duration }, index) => {
             console.log(new Date(startTime).toLocaleString());
-            dataSet[startTime] = {
-              _id: _id,
-              startTime: new Date(startTime).toLocaleDateString("hi-IN",options),
-              endTime: endTime?new Date(endTime).toLocaleString("hi-IN",options):"current",
-              duration: duration?format((duration)):"current",
-            };
+            if(endTime && duration > 5){
+              dataSet[startTime] = {
+                _id: _id,
+                startTime: new Date(startTime).toLocaleDateString("hi-IN",options),
+                endTime: new Date(endTime).toLocaleString("hi-IN",options),
+                duration: format((duration)),
+              };
+            }else if(!endTime && !duration){
+              dataSet[startTime] = {
+                _id: _id,
+                startTime: new Date(startTime).toLocaleDateString("hi-IN",options),
+                endTime: "current",
+                duration: "current",
+              };
+            }
             if(index == result.length-1){
               console.log(dataSet);
               return res('done')
