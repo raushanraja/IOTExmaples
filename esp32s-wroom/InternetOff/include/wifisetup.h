@@ -7,9 +7,10 @@ void startWiFi()
     delay(1000);
     WiFi.mode(WIFI_STA);
     WiFi.begin("TP-Link_9C82", "38702303");
+    // WiFi.begin("redmii", "1234467890");
     while (WiFi.status() != WL_CONNECTED)
     {
-        delay(500);
+        delay(2000);
     }
     Serial.println(WiFi.localIP());
 }

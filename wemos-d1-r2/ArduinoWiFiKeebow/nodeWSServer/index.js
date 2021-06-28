@@ -51,20 +51,38 @@ function openPavucontrol() {
 
 function handleDiscord() {
   let x = exec("pidof Discord",(err,out,code)=>{
+    err && console.log(err);
+    code && console.log(code);
     if(out){
+      console.log(out)
       exec(`i3-msg -t get_tree | egrep -o ${`"(class\\":\\".[^\\"]+\\")"`}`,(err,out,code)=>{
+      err && console.log(err);
+      code && console.log(code);
         if(out){
+	        console.log(out)
           app_list = out.trim().split('\n').map(app=>app.split(":")[1].replace(/\"/g, ""))
           if(app_list.includes('discord')){
-            exec(`i3-msg '[class=\"discord\"] kill'`)
+            exec(`i3-msg '[class=\"discord\"] kill'`,(err,out,code)=>{
+              err && console.log(err);
+              code && console.log(code);
+              out && console.log(out)
+            })
           }else{
-            exec('discord')
+            exec('discord',(err,out,code)=>{
+              err && console.log(err);
+              code && console.log(code);
+              out && console.log(out)
+            })
           }
         }
       })
     }
     else if(err){
-      exec('discord')
+      exec('discord',(err,out,code)=>{
+        err && console.log(err);
+        code && console.log(code);
+        out && console.log(out)
+      })
     }
     else{
       console.log(code);

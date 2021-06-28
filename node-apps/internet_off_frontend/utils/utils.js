@@ -20,7 +20,7 @@ function addDataToLocal(offTime,dataSet) {
         offTime.toArray(function (err, result) {
           if (err) throw err;
           result.map(({ _id, startTime, endTime, duration }, index) => {
-            console.log(new Date(startTime).toLocaleString());
+            console.log( new Date(startTime).toLocaleDateString("hi-IN",options), _id);
             if(endTime && duration > 5){
               dataSet[startTime] = {
                 _id: _id,

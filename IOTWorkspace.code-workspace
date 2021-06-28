@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../WEBTHINGS-LED"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"system_error": "cpp"
+		}
+	}
+}

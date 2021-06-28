@@ -1,0 +1,29 @@
+const socket = require('socket.io')();
+
+var exec = require('exec');
+ 
+
+
+socket.on('connection',client =>{
+      let x =    exec(['pavucontrol'], function(err, out, code) {
+      	if (err instanceof Error)
+      		throw err;
+  		process.stderr.write(err);
+	        process.stdout.write(out);
+ });
+
+      
+
+    console.log("Connected", ' client id:', client.id);
+    client.emit('init',{data:'hello world'})
+    client.on('message', message => handleMessage(message,client));
+})
+
+
+function handleMessage(message,client){
+    console.log(message)
+    socket.sockets.emit('received',{message:message,sender:client.id,type:'received'})
+}
+
+
+socket.listen(3000);
