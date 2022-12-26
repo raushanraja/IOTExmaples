@@ -1,0 +1,32 @@
+diff --git a/.gitignore b/.gitignore
+index 657ff31..4d04891 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -1 +1,4 @@
+ esp32s-wroom/pir_motion/nodeWSServer/node_modules/*
++blob/master/pico/libs/adafruit-circuitpython
++pico/libs
++venv
+\ No newline at end of file
+diff --git a/IOTWorkspace.code-workspace b/IOTWorkspace.code-workspace
+deleted file mode 100644
+index 44c3a6d..0000000
+--- a/IOTWorkspace.code-workspace
++++ /dev/null
+@@ -1,15 +0,0 @@
+-{
+-	"folders": [
+-		{
+-			"path": "."
+-		},
+-		{
+-			"path": "../WEBTHINGS-LED"
+-		}
+-	],
+-	"settings": {
+-		"files.associations": {
+-			"system_error": "cpp"
+-		}
+-	}
+-}
+\ No newline at end of file
