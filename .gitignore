@@ -1,1 +1,4 @@
 esp32s-wroom/pir_motion/nodeWSServer/node_modules/*
+blob/master/pico/libs/adafruit-circuitpython
+pico/libs
+venv
