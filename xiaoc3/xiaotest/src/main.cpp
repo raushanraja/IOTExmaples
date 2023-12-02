@@ -109,16 +109,12 @@ void setup()
   Serial.println("\nWiFi connected\nIP address: ");
   Serial.println(WiFi.localIP());
 
-  // while (!Serial)
-  //   delay(1);
-
   client.setServer(mqtt_server, mqtt_port);
   client.setCallback(callback);
 }
 
 void loop()
 {
-
   if (!client.connected())
     reconnect();
   client.loop();
