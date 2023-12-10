@@ -2,7 +2,7 @@
 - IC2 16X2 LCD 
 - AHT25 Humidity and Temperature Sensor
 
-```mermain
+```mermaid
 graph TD
 
     A <--> I
