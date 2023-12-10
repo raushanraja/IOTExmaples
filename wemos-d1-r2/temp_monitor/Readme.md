@@ -17,19 +17,15 @@ graph TD
     G <--> C 
     H <--> D
 
-
     subgraph LCD 16X2
-
     E[5V]
     F[GND]
-    G[D1]
-    H[D2]
+    G[SCL]
+    H[SDA]
   
     end
 
-    
     subgraph ESP8266
-
     A[5V]
     B[GND]
     C[D1 - GPIO4]
@@ -37,13 +33,10 @@ graph TD
 
     end
 
-
     subgraph AHT25
-
     I[5V]
     J[GND]
-    K[D1] 
-    L[D2]
-  
+    K[SCL] 
+    L[sDA]
     end
 ```
