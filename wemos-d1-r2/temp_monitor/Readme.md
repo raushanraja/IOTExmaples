@@ -1,6 +1,8 @@
 #### Temperature Monitoring 
 - IC2 16X2 LCD 
 - AHT25 Humidity and Temperature Sensor
+- Since both supports and usages I2C protocol, Same pin configuration can be used for both
+
 
 ```mermaid
 graph TD
