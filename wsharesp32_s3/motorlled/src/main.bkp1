@@ -1,0 +1,193 @@
+// #include <FastLED.h>
+// #include <Motor.h>
+#define ARDUINO_ARCH_ESP32
+#include <Arduino.h>
+// ///////////////////////////////////////////////
+// //////////////////LED /////////////////////////
+// ///////////////////////////////////////////////
+// #define NUM_LEDS 2
+// #define DATA_PIN GPIO_NUM_10
+// CRGB leds[NUM_LEDS];
+// ///////////////////////////////////////////////
+// ///////////////////////////////////////////////
+// ///////////////////////////////////////////////
+
+// AF_DCMotor motor1(1);
+// AF_DCMotor motor2(2);
+
+// int speed = 255;
+
+// void ledCSetup1()
+// {
+//   ledcSetup(LEDC_CHANNEL_0, LEDC_BASE_FREQ, LEDC_TIMER_12_BIT);
+//   ledcAttachPin(MOTOR1_EN, LEDC_CHANNEL_0);
+// }
+// void ledCSetup2()
+// {
+//   ledcSetup(LEDC_CHANNEL_1, LEDC_BASE_FREQ, LEDC_TIMER_12_BIT);
+//   ledcAttachPin(MOTOR2_EN, LEDC_CHANNEL_1);
+// }
+// void ledCSetup3()
+// {
+//   ledcSetup(LEDC_CHANNEL_2, LEDC_BASE_FREQ, LEDC_TIMER_12_BIT);
+//   ledcAttachPin(MOTOR3_EN, LEDC_CHANNEL_2);
+// }
+// void ledCSetup4()
+// {
+//   ledcSetup(LEDC_CHANNEL_3, LEDC_BASE_FREQ, LEDC_TIMER_12_BIT);
+//   ledcAttachPin(MOTOR4_EN, LEDC_CHANNEL_3);
+// }
+// void relasemotor1()
+// {
+//   motor1.run(RELEASE);
+// }
+
+// void relasemotor2()
+// {
+//   motor2.run(RELEASE);
+// }
+
+// void release()
+// {
+//   relasemotor1();
+//   relasemotor2();
+// }
+
+// void backward()
+// {
+//   Serial.println("backward");
+//   motor1.run(BACKWARD);
+//   delay(100);
+//   motor2.run(BACKWARD);
+// }
+
+// void forward()
+// {
+//   Serial.println("forward");
+//   motor1.run(FORWARD);
+//   delay(100);
+//   motor2.run(FORWARD);
+// }
+
+// void left()
+// {
+//   Serial.println("left");
+//   motor1.run(BACKWARD);
+//   delay(100);
+//   motor2.run(FORWARD);
+// }
+
+// void right()
+// {
+//   Serial.println("right");
+//   motor1.run(FORWARD);
+//   delay(100);
+//   motor2.run(BACKWARD);
+// }
+
+// void MotorSetup()
+// {
+//   motor1.setSpeed(speed);
+//   motor2.setSpeed(speed);
+// }
+
+// void Serialsetup()
+// {
+//   Serial.begin(9600);
+//   while (!Serial)
+//     ;
+// }
+
+// void LEDSetup()
+// {
+//   FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, NUM_LEDS); // GRB ordering is typical
+//   FastLED.setBrightness(255);
+//   leds[1] = CRGB::Gray;
+// }
+
+// void LEDRed()
+// {
+//   leds[0] = CRGB::Red;
+//   FastLED.show();
+// }
+
+// void LEDGreen()
+// {
+//   leds[0] = CRGB::Green;
+//   FastLED.show();
+// }
+
+// void LEDBlue()
+// {
+//   leds[0] = CRGB::Blue;
+//   FastLED.show();
+// }
+
+// void LEDYellow()
+// {
+//   leds[0] = CRGB::Yellow;
+//   FastLED.show();
+// }
+
+// void LEDOff()
+// {
+//   leds[0] = CRGB::Black;
+//   FastLED.show();
+// }
+
+// void setup()
+// {
+//   LEDSetup();
+//   MotorSetup();
+// }
+
+// int brightness = 0;
+// int fadeAmount = 5;
+// void loop()
+// {
+//   if (Serial.available() > 0)
+//   {
+//     char data = Serial.read();
+//     switch (data)
+//     {
+//     case 'F':
+//       forward();
+//       LEDGreen();
+//       break;
+//     case 'B':
+//       backward();
+//       LEDRed();
+//       break;
+//     case 'L':
+//       left();
+//       LEDBlue();
+//       break;
+//     case 'R':
+//       right();
+//       LEDYellow();
+//       break;
+//     case 'S':
+//       release();
+//       LEDOff();
+//       break;
+//     case 'A':
+//       if (speed < 255)
+//       {
+//         Serial.println("Speed: " + String(speed));
+//         speed += 25;
+//         motor1.setSpeed(speed);
+//         motor2.setSpeed(speed);
+//       }
+//       break;
+//     case 'T':
+//       if (speed > 0)
+//       {
+//         Serial.println("Speed: " + String(speed));
+//         speed -= 25;
+//         motor1.setSpeed(speed);
+//         motor2.setSpeed(speed);
+//       }
+//       break;
+//     }
+//   }
+// }

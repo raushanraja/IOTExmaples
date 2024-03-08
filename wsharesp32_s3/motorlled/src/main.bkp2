@@ -1,0 +1,54 @@
+#include <Arduino.h>
+#include <led.h>
+
+
+uint32_t brightness = 0;  // how bright the LED is
+uint32_t fadeAmount = 5; // how many points to fade the LED by
+
+
+void setup()
+{
+    Serial.begin(9600);
+    LEDSetup();
+    ledcAnalogSetup1();
+    ledcAnalogSetup2();
+    ledcAnalogSetup3();
+    ledcAnalogSetup4();
+}
+
+void loop()
+{
+    if (Serial.available() > 0)
+    {
+        char c = Serial.read();
+        Serial.println(c);
+        if (c == 'r')
+        {
+            LEDRed();
+        }
+        else if (c == 'g')
+        {
+            LEDGreen();
+        }
+        else if (c == 'b')
+        {
+            LEDBlue();
+        }
+        else if (c == 'y')
+        {
+            LEDYellow();
+        }
+        else if (c == 'i')
+        {
+            ledcAnalogWrite1(LEDC_CHANNEL_0, brightness);
+            ledcAnalogWrite2(LEDC_CHANNEL_1, brightness);
+            ledcAnalogWrite3(LEDC_CHANNEL_2, brightness);
+            ledcAnalogWrite4(LEDC_CHANNEL_3, brightness);
+            brightness = brightness + fadeAmount;
+            if (brightness <= 0 || brightness >= 255)
+            {
+                fadeAmount = -fadeAmount;
+            }
+        }
+    }
+}
